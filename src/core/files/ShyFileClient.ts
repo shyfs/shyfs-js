@@ -1,4 +1,5 @@
 import { TypedEmitter } from 'tiny-typed-emitter'
+import { Shy } from '../../contracts'
 import { AbstractShy } from '../helpers/AbstractShy'
 import { ShyClient } from '../ShyClient'
 

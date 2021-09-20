@@ -1,3 +1,4 @@
+import { Shy } from '../../contracts'
 import { AbstractShy } from '../helpers/AbstractShy'
 
 interface CreateFolderProps {

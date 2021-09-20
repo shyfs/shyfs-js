@@ -6,6 +6,7 @@ import { ShyOrganizationClient } from './organization/ShyOrganizationClient'
 import { TypedEmitter } from 'tiny-typed-emitter'
 import { ShyWs } from './websockets/ShyWs'
 import { ShyUploadClient } from './uploads/ShyUploadClient'
+import { Shy } from '../contracts'
 
 export class ShyClient {
   public http: AxiosInstance

@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios'
+import { Shy } from '../../contracts'
 import { AbstractShy } from '../helpers/AbstractShy'
 import { ShyUploadHttpClient } from './ShyUploadHttpClient'
 import { ShyUploadLocalClient } from './ShyUploadLocalClient'

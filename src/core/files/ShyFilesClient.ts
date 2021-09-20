@@ -1,3 +1,4 @@
+import { Shy } from '../../contracts'
 import { SingletonsContainer } from '../../helpers/SingletonsContainer'
 import { AbstractShy } from '../helpers/AbstractShy'
 import { ShyClient } from '../ShyClient'
