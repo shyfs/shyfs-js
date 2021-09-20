@@ -9,6 +9,7 @@ const ShyClientFactory = () => {
 
 describe('shy client', () => {
   it('should works', async () => {
-    expect(1).toBe(1)
+    const client = ShyClientFactory()
+    expect(client.url).toBe(client.url)
   })
 })
