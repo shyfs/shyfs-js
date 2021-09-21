@@ -21,7 +21,8 @@ export class ShyUploadLocalClient extends AbstractShy {
             mimeType: data.file.type,
             size: data.file.size
           },
-          folderItemId: data.folderItemId
+          folderItemId: data.folderItemId,
+          path: data.path
         },
         'upload:local',
         axiosConfig
