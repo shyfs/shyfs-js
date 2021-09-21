@@ -34,7 +34,7 @@ export class ShyUploadLocalClient extends AbstractShy {
       })
   }
 
-  public async uploadChunks(file: Shy.File, fileChunk: FileChunk) {
+  private async uploadChunks(file: Shy.File, fileChunk: FileChunk) {
     await fileChunk.handle()
 
     for (const chunk of fileChunk.chunks) {
