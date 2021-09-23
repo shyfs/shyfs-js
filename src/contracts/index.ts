@@ -166,9 +166,17 @@ export namespace Shy {
     }
 
     export interface RealtimeFileEvent {
+      'download:start': () => void
+      'download:finish': () => void
       'download:progress': (progress: FileItemProgress) => void
+      'upload:start': () => void
+      'upload:finish': () => void
       'upload:progress': (progress: FileItemProgress) => void
       status: (status: FileItemStatus) => void
+    }
+
+    export interface RealtimeOrganizationEvent {
+      'new:file': (file: Shy.File) => void
     }
 
     interface FileItemWsEventsProps {

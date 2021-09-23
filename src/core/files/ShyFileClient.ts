@@ -6,6 +6,16 @@ import { ShyClient } from '../ShyClient'
 export class ShyFileClient extends AbstractShy {
   public events: TypedEmitter<Shy.Events.RealtimeFileEvent>
 
+  private eventsNames: (keyof Shy.Events.RealtimeFileEvent)[] = [
+    'status',
+    'download:finish',
+    'download:progress',
+    'download:start',
+    'upload:finish',
+    'upload:progress',
+    'upload:start'
+  ]
+
   constructor(protected client: ShyClient, protected fileUUID: string) {
     super(client)
     this.events = new TypedEmitter()
@@ -13,22 +23,17 @@ export class ShyFileClient extends AbstractShy {
   }
 
   public realtime() {
-    this.client.io.socket.on('file:upload:progress', (args) => {
-      if (args.uuid === this.fileUUID) {
-        this.events.emit('upload:progress', args)
-      }
-    })
+    const pipe = (eventName: keyof Shy.Events.RealtimeFileEvent) => {
+      this.client.io.socket.on(`file:${eventName}`, (args) => {
+        if (args.uuid === this.fileUUID) {
+          console.log(`file:${eventName}`, args)
+          this.events.emit(eventName, args)
+        }
+      })
+    }
 
-    this.client.io.socket.on('file:download:progress', (args) => {
-      if (args.uuid === this.fileUUID) {
-        this.events.emit('download:progress', args)
-      }
-    })
-
-    this.client.io.socket.on('file:status', (args) => {
-      if (args.uuid === this.fileUUID) {
-        this.events.emit('status', args)
-      }
-    })
+    for (const eventName of this.eventsNames) {
+      pipe(eventName)
+    }
   }
 }
