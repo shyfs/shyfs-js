@@ -151,7 +151,7 @@ export namespace Shy {
 
   // EVENTS
   export namespace Events {
-    export type GlobalEvents = {
+    export interface GlobalEvents {
       ready: () => void
       'upload:torrent:metadata': (metadata: Shy.Responses.TorrentMetadata) => void
       upload: (file: Shy.File) => void

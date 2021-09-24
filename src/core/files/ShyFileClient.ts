@@ -22,9 +22,9 @@ export class ShyFileClient extends AbstractShy {
     this.realtime()
   }
 
-  public realtime() {
+  private realtime() {
     const pipe = (eventName: keyof Shy.Events.RealtimeFileEvent) => {
-      this.client.io.socket.on(`file:${eventName}`, (args) => {
+      this.client.realtime.socket.on(`file:${eventName}`, (args) => {
         if (args.uuid === this.fileUUID) {
           console.log(`file:${eventName}`, args)
           this.events.emit(eventName, args)

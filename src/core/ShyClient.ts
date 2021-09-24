@@ -23,7 +23,7 @@ export class ShyClient {
 
   public uploads: ShyUploadClient
 
-  public io: ShyWs
+  public realtime: ShyWs
 
   constructor(public url: string, private token: string) {
     this.http = axios.create({
@@ -39,7 +39,7 @@ export class ShyClient {
     this.organization = new ShyOrganizationClient(this)
     this.folders = new ShyFoldersClient(this)
     this.files = new ShyFilesClient(this)
-    this.io = new ShyWs(this)
+    this.realtime = new ShyWs(this)
     this.uploads = new ShyUploadClient(this)
 
     this.settings()
@@ -57,13 +57,13 @@ export class ShyClient {
   }
 
   private async ws() {
-    if (this.io.isReady) return this.io
+    if (this.realtime.isReady) return this.realtime
 
-    await this.io.boot().then(() => {
+    await this.realtime.boot().then(() => {
       this.ready()
     })
 
-    return this.io
+    return this.realtime
   }
 
   private async settings() {
@@ -73,7 +73,7 @@ export class ShyClient {
   }
 
   private ready() {
-    if (this.io.isReady && this.organization.settings.isReady) {
+    if (this.realtime.isReady && this.organization.settings.isReady) {
       this.events.emit('ready')
     }
   }

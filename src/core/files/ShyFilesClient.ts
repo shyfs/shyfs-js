@@ -18,8 +18,6 @@ export class ShyFilesClient extends AbstractShy {
   }
 
   public from(fileUUID: string) {
-    return this.files.add(fileUUID, () => {
-      return new ShyFileClient(this.client, fileUUID)
-    })
+    return this.files.add(fileUUID, () => new ShyFileClient(this.client, fileUUID))
   }
 }

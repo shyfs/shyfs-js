@@ -20,7 +20,9 @@ export class ShyWs extends AbstractShy {
 
     // this.uri = this.client.url.replace(/(http|https):\/\//g, 'ws://')
     this.uri = this.client.url
-    this.socket = io(this.uri, {})
+    this.socket = io(this.uri, {
+      path: '/shyfs/socket.io/'
+    })
     this.events = new TypedEmitter()
   }
 
